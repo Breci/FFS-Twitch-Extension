@@ -4,7 +4,6 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const WebpackShellPlugin = require('webpack-shell-plugin');
 const webpack = require("webpack");
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const path = require('path');
@@ -55,7 +54,7 @@ var config = {
     },
     context: path.resolve(__dirname,'..'),
     output: {
-        path: path.resolve(__dirname,'..','dist/frontend/'),
+        path: path.resolve(__dirname,'..','dist/'),
         filename: 'js/[name].js'
     },
     module: {
@@ -105,25 +104,12 @@ var config = {
         new VueLoaderPlugin(),
         new CopyWebpackPlugin([{
             from: resolve('frontend/assets/'),
-            to: resolve('dist/frontend/assets/'),
+            to: resolve('dist/assets/'),
             toType: 'dir'
         }]),
-        new CopyWebpackPlugin([{
-            from: resolve('backend/'),
-            to: resolve('dist/backend/'),
-        }],{
-            ignore: [ 'node_modules/**/*'] //just to be safe
-        }),
-        new CopyWebpackPlugin([{
-            from: resolve('package.json'),
-            to: resolve('dist/backend/package.json'),
-        }],{
-            ignore: [ 'node_modules/**/*'] //just to be safe
-        }),
         new MiniCssExtractPlugin({
             filename: "css/[name].css",
         }),
-        new WebpackShellPlugin({onBuildEnd:['npm --prefix ./dist/backend install --production ./dist/backend']}),
         new webpack.DefinePlugin({
             CONFIG: JSON.stringify(require("../frontend/config/config.production")),
         })

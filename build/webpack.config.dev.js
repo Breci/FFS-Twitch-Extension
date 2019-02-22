@@ -32,13 +32,6 @@ var config = {
             key: fs.readFileSync(path.join(__dirname,'..','certs/testing.key')),
             cert: fs.readFileSync(path.join(__dirname,'..','certs/testing.crt')),
         },
-        proxy: {
-            '/api': {
-                target: 'https://backend:8080',
-                secure: false,
-                pathRewrite: {'^/api' : ''}
-            }
-        }
     },
     optimization: {
         minimize: false,

@@ -14,11 +14,12 @@ module.exports = exports = {
     ],
     "parserOptions": {
         "sourceType": "module",
+        "ecmaVersion": 8
     },
     "rules": {
         // Possible Errors (overrides from recommended set)
         // We allow console log for testing or local dev, but not on production
-        "no-console": ENV ==='production' ? ERROR : WARN,
+        "no-console": ENV === 'production' ? ERROR : WARN,
 
         // Best Practices
         "no-eval": ERROR,
