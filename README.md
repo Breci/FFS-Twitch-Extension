@@ -7,7 +7,7 @@ Use VueJs
 - Extension matching the Twitch requirements
 - getting data from FFS server
 - Ranking pages
-- Little design to visualize the first data
+- Little design to visualize the first data [preview](https://i.imgur.com/CuXGkbu.png)
 
 ## TODO
 
