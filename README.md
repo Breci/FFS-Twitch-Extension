@@ -3,10 +3,17 @@ Extension created to display the FFS ranking during the streams.
 
 Use VueJs
 
+## Done
+- Extension matching the Twitch requirements
+- getting data from FFS server
+- Ranking pages
+- Little design to visualize the first data
+
 ## TODO
 
 - Design
-- Panel
+- Panel view
+- Mobile view
 
 ## Prepare to dev
 See [the Twitch extension getting started](https://dev.twitch.tv/docs/extensions/)
