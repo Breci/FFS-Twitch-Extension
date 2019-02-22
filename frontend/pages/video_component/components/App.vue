@@ -19,7 +19,6 @@
         components: {VideoComponentView},
         data() {
             return {
-                message: "Hello world",
                 jwt: null,
                 users: [],
                 rounds: [],
@@ -41,7 +40,7 @@
                         round: []
                     })
                 }
-
+                //set the score of the user
                 this.updateUserScore(data.round_id, data.user_id, data)
 
             },
@@ -70,8 +69,11 @@
                     })
                 }
             },
+            /**
+             * Initialize the connection to the websocket on the FFS server
+             * @param eventId
+             */
             connectToFFSSocket(eventId) {
-
                 FFSWebSocket.connect();
                 FFSWebSocket.onEventUpdate(this.onEventUpdate);
                 FFSWebSocket.onConnected(() => {
@@ -80,8 +82,7 @@
             }
         },
         mounted() {
-
-
+            // We wait until we got all the data from twitch
             let promises = [];
             promises.push(new Promise((resolve, reject) => {
                 window.Twitch.ext.onAuthorized(function (auth) {
@@ -145,11 +146,13 @@
                 }
 
             }).then(async (data) => {
+                //Get the list of the accepted streamers on the event
                 let eventId = data.event.id;
                 return Object.assign(data, {
                     users: await FFSAPI.getActiveStreamersfromEvent(eventId)
                 })
             }).then(async (data) => {
+                //Get the data of all the rounds
                 let rounds = data.roundsId;
                 let eventId = data.event.id;
                 return Object.assign(data, {
@@ -161,6 +164,7 @@
                     }))
                 })
             }).then(function (data) {
+                //Set up how we get updates
                 if (window.Twitch.ext.configuration.global
                     && JSON.parse(window.Twitch.ext.configuration.global.content).useConfig
                     && JSON.parse(window.Twitch.ext.configuration.global.content).useTwitchPubSub){
