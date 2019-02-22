@@ -1,5 +1,15 @@
 # Fight For Subs Extension 
-Extension created to display the FFS ranking during the streams
+Extension created to display the FFS ranking during the streams.
+
+Use VueJs
+
+## TODO
+
+- Design
+- Panel
+
+## Prepare to dev
+See [the Twitch extension getting started](https://dev.twitch.tv/docs/extensions/)
 
 ## Dependencies
 
